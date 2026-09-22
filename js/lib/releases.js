@@ -38,8 +38,9 @@ export async function fetchLatestRelease() {
 }
 
 function isOfficialInstaller(asset, os) {
-  return typeof asset.name === "string"
-    && INSTALLER_EXTENSIONS[os].test(asset.name)
+  return typeof asset?.name === "string"
+    && Boolean(INSTALLER_EXTENSIONS[os]?.test(asset.name))
+    && typeof asset.browser_download_url === "string"
     && Boolean(asset.browser_download_url?.startsWith(releaseDownloadPrefix));
 }
 
@@ -58,7 +59,15 @@ function fitsArch(asset, os, arch) {
 }
 
 export function selectInstaller(assets, { os, arch }) {
-  return assets
-    .filter((asset) => isOfficialInstaller(asset, os))
+  return getInstallers(assets, os)
     .find((asset) => fitsArch(asset, os, arch)) ?? null;
+}
+
+export function getInstallers(assets, os) {
+  return Array.isArray(assets) ? assets.filter((asset) => isOfficialInstaller(asset, os)) : [];
+}
+
+export function installerArchitecture(asset, os) {
+  const name = asset.name.toLowerCase();
+  return os === "mac" && UNIVERSAL_PATTERN.test(name) ? "universal" : archFromAssetName(name, os);
 }

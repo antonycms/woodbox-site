@@ -3,7 +3,15 @@ function selectTab(tabs, selectedTab, { moveFocus = false } = {}) {
     const isSelected = tab === selectedTab;
     tab.setAttribute("aria-selected", String(isSelected));
     tab.tabIndex = isSelected ? 0 : -1;
-    document.getElementById(tab.getAttribute("aria-controls")).classList.toggle("is-active", isSelected);
+    const panel = document.getElementById(tab.getAttribute("aria-controls"));
+    panel.classList.toggle("is-active", isSelected);
+    panel.hidden = !isSelected;
+    if (isSelected) {
+      panel.querySelectorAll("img[data-src]").forEach((image) => {
+        image.src = image.dataset.src;
+        delete image.dataset.src;
+      });
+    }
   });
   if (moveFocus) selectedTab.focus();
 }
@@ -25,12 +33,15 @@ function initTablist(tablist) {
   });
 
   tablist.addEventListener("keydown", (event) => {
-    const index = targetIndex(event.key, tabs.indexOf(document.activeElement), tabs.length);
+    const current = tabs.indexOf(document.activeElement);
+    if (current < 0) return;
+    const index = targetIndex(event.key, current, tabs.length);
     if (index === null) return;
 
     event.preventDefault();
     selectTab(tabs, tabs[index], { moveFocus: true });
   });
+  selectTab(tabs, tabs.find((tab) => tab.getAttribute("aria-selected") === "true") || tabs[0]);
 }
 
 export function initTabs() {

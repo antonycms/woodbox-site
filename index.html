@@ -20,12 +20,16 @@
   <link rel="modulepreload" href="js/i18n/pt-BR.js">
   <link rel="modulepreload" href="js/i18n/en.js">
   <link rel="modulepreload" href="js/features/anchors.js">
+  <link rel="modulepreload" href="js/features/navigation.js">
   <link rel="modulepreload" href="js/lib/events.js">
+  <link rel="modulepreload" href="js/lib/elements.js">
   <link rel="modulepreload" href="js/lib/platform.js">
   <link rel="modulepreload" href="js/lib/releases.js">
   <link rel="modulepreload" href="js/features/downloads.js">
   <link rel="modulepreload" href="js/features/tabs.js">
+  <link rel="modulepreload" href="js/features/image-viewer.js">
   <link rel="modulepreload" href="js/features/reveal.js">
+  <link rel="modulepreload" href="js/features/ai-demo.js">
 </head>
 
 <body>
@@ -54,37 +58,46 @@
       <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></symbol>
       <symbol id="i-plug" viewBox="0 0 24 24"><path d="M12 22v-5" /><path d="M9 8V2" /><path d="M15 8V2" /><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z" /></symbol>
       <symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3" /></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" /></symbol>
+      <symbol id="i-replay" viewBox="0 0 24 24"><path d="M3 10a9 9 0 1 1 2 8M3 4v6h6" /></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" /></symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5" /></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" /></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6" /></symbol>
     </defs>
   </svg>
 
   <a class="skip-link" href="#main" data-i18n="skip.text">Skip to content</a>
 
   <header class="nav-shell">
-    <nav class="nav" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="Woodbox home">
+    <nav class="nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.label">
+      <a class="brand" href="#top" aria-label="Woodbox home" data-i18n-attr="aria-label:nav.home">
         <span class="brand-mark" aria-hidden="true">
           <img src="assets/icon.webp" alt="">
         </span>
         <span>Woodbox</span>
       </a>
 
-      <div class="nav-links" aria-label="Page sections">
-        <a href="#features" data-i18n="nav.features">Features</a>
-        <a href="#positioning" data-i18n="nav.positioning">Why Woodbox</a>
-        <a href="#download" data-i18n="nav.download">Download</a>
-      </div>
-
-      <div class="nav-actions">
-        <a class="nav-github" href="https://github.com/antonycms/woodbox" target="_blank" rel="noreferrer">
+      <div class="nav-menu" id="primary-menu">
+        <div class="nav-links">
+          <a href="#ai" data-i18n="nav.ai">AI</a>
+          <a href="#features" data-i18n="nav.features">Features</a>
+          <a href="#positioning" data-i18n="nav.positioning">Why Woodbox</a>
+        </div>
+        <a class="nav-github" href="https://github.com/antonycms/woodbox" target="_blank" rel="noreferrer" aria-label="GitHub">
           <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
           <span data-i18n="nav.github">GitHub</span>
         </a>
-        <div class="language-switch" aria-label="Language selector">
+        <div class="language-switch" role="group" aria-label="Language selector" data-i18n-attr="aria-label:nav.language">
           <button class="lang-option" aria-pressed="false" type="button" data-lang="pt-BR">PT</button>
           <span class="lang-divider" aria-hidden="true">|</span>
           <button class="lang-option is-active" aria-pressed="true" type="button" data-lang="en">EN</button>
         </div>
       </div>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="primary-menu" aria-expanded="false" aria-label="Navigation menu" data-i18n-attr="aria-label:nav.menu" hidden>
+        <svg class="icon nav-menu-icon" aria-hidden="true"><use href="#i-menu" /></svg>
+        <svg class="icon nav-close-icon" aria-hidden="true"><use href="#i-close" /></svg>
+      </button>
     </nav>
   </header>
 
@@ -93,20 +106,19 @@
       <div class="hero-copy">
         <h1 data-i18n="hero.title">Your databases.
           Your workspace.</h1>
-        <p class="hero-text" data-i18n="hero.text">Explore tables, write SQL, and organize connections in a lightweight
-          desktop app. From the first connection to the next query, everything stays in one place.</p>
+        <p class="hero-text" data-i18n="hero.text">A desktop app for PostgreSQL, MySQL, and SQLite. Explore data, write SQL, and bring in AI when you need it.</p>
 
         <div class="hero-actions">
-          <a class="button button-primary" data-download href="https://github.com/antonycms/woodbox/releases/latest"
-            target="_blank" rel="noreferrer">
+          <a class="button button-primary" data-download href="#download">
             <svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>
             <span data-i18n="hero.primary">Download Woodbox</span>
           </a>
-          <a class="button button-secondary" href="#features">
-            <span data-i18n="hero.secondary">Explore the features</span>
+          <a class="button button-secondary" href="#ai">
+            <span data-i18n="hero.secondary">Explore</span>
             <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
           </a>
         </div>
+        <a class="hero-download-options" href="#download" data-i18n="download.otherPlatforms">Other operating systems</a>
 
         <div class="hero-points">
           <span class="hero-point">
@@ -127,8 +139,11 @@
       <div class="hero-visual">
         <div class="screen-shell">
           <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
-          <img src="assets/2.table_data.webp" alt="Woodbox table data view" width="1920" height="1040"
-            fetchpriority="high" data-i18n-attr="alt:hero.imageAlt">
+          <a class="screen-link hero-image-link" href="assets/2.table_data.webp" target="_blank" rel="noreferrer" data-image-viewer data-image-title="features.explore.title" data-image-alt="hero.imageAlt" data-image-x="0.35" data-image-y="0.25">
+            <img src="assets/2.table_data.webp" alt="Woodbox table data view" width="1920" height="1040"
+              fetchpriority="high" data-i18n-attr="alt:hero.imageAlt">
+            <span class="screen-expand" aria-hidden="true"><svg class="icon"><use href="#i-expand" /></svg></span>
+          </a>
         </div>
       </div>
     </section>
@@ -156,224 +171,255 @@
       </div>
     </section>
 
-    <section id="features" class="features section-pad">
-      <div class="section-heading" data-reveal>
-        <h2 data-i18n="features.title">Browse and query without switching tools.</h2>
+    <section id="ai" class="ai-section section-pad" aria-labelledby="ai-title">
+      <div class="ai-heading" data-reveal>
+        <p class="ai-eyebrow"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-sparkles" /></svg><span data-i18n="ai.eyebrow">AI, in your flow</span></p>
+        <h2 id="ai-title"><span data-i18n="ai.title">Ask your data.</span><br><span class="ai-title-muted" data-i18n="ai.titleAccent">Stay in your flow.</span></h2>
+        <p class="ai-intro" data-i18n="ai.intro">Turn a question into SQL, right inside Woodbox. Choose your AI provider, review the query, and keep moving.</p>
+      </div>
+
+      <div class="ai-showcase" data-ai-demo data-state="done" data-reveal>
+        <div class="ai-guide">
+          <p class="ai-guide-label" data-i18n="ai.try">Start with a question</p>
+          <div class="ai-scenarios" role="group" aria-label="Demo examples" data-i18n-attr="aria-label:ai.examples">
+            <button class="ai-scenario" type="button" data-scenario="customers" aria-pressed="true" aria-controls="ai-preview">
+              <span class="ai-scenario-number">01</span>
+              <span><strong data-i18n="ai.customers.title">Generate a query</strong><span data-i18n="ai.customers.description">Find your top customers, starting with a question.</span></span>
+              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+            </button>
+            <button class="ai-scenario" type="button" data-scenario="revenue" aria-pressed="false" aria-controls="ai-preview">
+              <span class="ai-scenario-number">02</span>
+              <span><strong data-i18n="ai.revenue.title">Understand the SQL</strong><span data-i18n="ai.revenue.description">See what each part of a query does.</span></span>
+              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+            </button>
+            <button class="ai-scenario" type="button" data-scenario="pending" aria-pressed="false" aria-controls="ai-preview">
+              <span class="ai-scenario-number">03</span>
+              <span><strong data-i18n="ai.pending.title">Refine the query</strong><span data-i18n="ai.pending.description">Adjust filters and sorting without starting over.</span></span>
+              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+            </button>
+          </div>
+          <div class="ai-guide-note">
+            <svg class="icon icon-sm" aria-hidden="true"><use href="#i-plug" /></svg>
+            <p data-i18n="ai.providerNote">Your provider. Your workflow. AI is optional, always.</p>
+          </div>
+        </div>
+
+        <div class="ai-demo-wrap">
+          <div class="ai-demo-caption">
+            <span><span class="ai-live-dot" aria-hidden="true"></span><span data-ai-caption data-i18n="ai.preview">Interactive demo</span></span>
+            <span class="ai-demo-controls" data-ai-controls hidden>
+              <button type="button" class="ai-control" data-ai-pause aria-label="Pause animation" data-i18n-attr="aria-label:ai.pause"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-pause" /></svg></button>
+              <button type="button" class="ai-control" data-ai-replay aria-label="Replay demo" data-i18n-attr="aria-label:ai.replay"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-replay" /></svg></button>
+            </span>
+          </div>
+
+          <div class="ai-window" id="ai-preview" role="group" aria-label="Woodbox AI demo with sample data" data-i18n-attr="aria-label:ai.windowLabel">
+            <div class="ai-window-titlebar" aria-hidden="true">
+              <span class="ai-window-dots"><i></i><i></i><i></i></span>
+              <span><img src="assets/icon.webp" width="15" height="15" alt="">Woodbox</span>
+              <span class="ai-window-project">store · PostgreSQL</span>
+            </div>
+            <div class="ai-workspace">
+              <aside class="ai-db-tree" aria-hidden="true">
+                <div class="ai-tree-heading"><svg class="icon icon-sm"><use href="#i-database" /></svg><span data-i18n="ai.projects">Projects</span></div>
+                <div class="ai-tree-search"><svg class="icon icon-sm"><use href="#i-search" /></svg><span data-i18n="ai.filter">Filter</span></div>
+                <div class="ai-tree-connection"><span class="ai-connection-dot"></span>store</div>
+                <div class="ai-tree-schema"><svg class="icon icon-sm"><use href="#i-chevron" /></svg>public</div>
+                <div class="ai-tree-table is-used" data-ai-table="customers"><svg class="icon icon-sm"><use href="#i-table" /></svg>customers</div>
+                <div class="ai-tree-table is-used" data-ai-table="orders"><svg class="icon icon-sm"><use href="#i-table" /></svg>orders</div>
+                <div class="ai-tree-table"><svg class="icon icon-sm"><use href="#i-table" /></svg>products</div>
+                <div class="ai-tree-bottom"><svg class="icon icon-sm"><use href="#i-code" /></svg>PostgreSQL 16</div>
+              </aside>
+
+              <div class="ai-editor">
+                <div class="ai-editor-tabs"><span><svg class="icon icon-sm" aria-hidden="true"><use href="#i-terminal" /></svg><span data-ai-filename>top_customers.sql</span><span class="ai-tab-close" aria-hidden="true">×</span></span></div>
+                <div class="ai-editor-toolbar"><span><span class="ai-connection-dot" aria-hidden="true"></span>store / public</span><span class="ai-sql-label">SQL</span></div>
+                <p class="ai-edit-note" data-i18n="ai.changedLines">Updated filter, sorting, and limit</p>
+                <div class="ai-code-area">
+                  <div class="ai-line-numbers" aria-hidden="true">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12</div>
+                  <pre class="ai-editor-code"><code data-ai-code>SELECT c.name,
+  COUNT(*) AS orders,
+  SUM(o.total) AS spent
+FROM customers c
+JOIN orders o
+  ON o.customer_id = c.id
+WHERE o.status = 'paid'
+GROUP BY c.id, c.name
+ORDER BY spent DESC
+LIMIT 3;</code></pre>
+                  <span class="ai-editor-hint" data-ai-editor-hint data-i18n="ai.editorHint">Your next query starts here.</span>
+                </div>
+                <div class="ai-result-panel">
+                  <div class="ai-result-heading"><span><svg class="icon icon-sm" aria-hidden="true"><use href="#i-table" /></svg><span data-i18n="ai.result">Result</span><span class="ai-result-count" data-ai-rowcount>3</span></span><span class="ai-result-time" data-ai-result-time>24 ms</span></div>
+                  <div class="ai-result-empty"><svg class="icon" aria-hidden="true"><use href="#i-terminal" /></svg><span data-i18n="ai.resultEmpty">Your results will appear here.</span></div>
+                  <div class="ai-result-data" data-ai-results>
+                    <table><thead><tr><th scope="col">name</th><th scope="col">orders</th><th scope="col">spent</th></tr></thead><tbody><tr><td>Ana Silva</td><td>24</td><td>4,820.00</td></tr><tr><td>Lucas Costa</td><td>18</td><td>3,640.00</td></tr><tr><td>Julia Santos</td><td>15</td><td>2,950.00</td></tr></tbody></table>
+                  </div>
+                </div>
+                <div class="ai-editor-status"><span><span class="ai-connection-dot" aria-hidden="true"></span><span data-i18n="ai.connected">Connected</span></span><span>UTF-8</span></div>
+              </div>
+
+              <div class="ai-chat">
+                <div class="ai-chat-title"><span><svg class="icon icon-sm" aria-hidden="true"><use href="#i-sparkles" /></svg><span data-i18n="ai.assistant">AI assistant</span></span><span aria-hidden="true">···</span></div>
+                <div class="ai-chat-conversation">
+
+                  <div class="ai-user-message" data-ai-prompt>Who are the 3 customers who spent the most on paid orders?</div>
+                  <div class="ai-thinking"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-sparkles" /></svg><span data-i18n="ai.thinking">Looking at your schema</span><span class="ai-thinking-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+                  <div class="ai-answer">
+                    <p class="ai-context"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-check" /></svg><span data-ai-context>customers + orders</span></p>
+                    <p class="ai-answer-text" data-ai-response data-i18n="ai.generate.response">Here is the query. Review the SQL before running it.</p>
+                    <ol class="ai-explanation">
+                      <li><code>DATE_TRUNC</code><p data-i18n="ai.explain.group">Groups dates by month, so sales on different days share one row.</p></li>
+                      <li><code>WHERE</code><p data-i18n="ai.explain.filter">Includes only paid orders from the start of two months ago onward.</p></li>
+                      <li><code>SUM + GROUP BY</code><p data-i18n="ai.explain.total">Adds up each month’s revenue and sorts the months in chronological order.</p></li>
+                    </ol>
+                    <div class="ai-query-card">
+                      <div class="ai-query-card-title"><span class="ai-query-location" data-i18n="ai.queryLocation">SQL in the editor</span><span class="ai-query-location-mobile">SQL</span><span class="ai-readonly">SELECT</span></div>
+                      <pre><code data-ai-chat-code>SELECT c.name,
+  COUNT(*) AS orders,
+  SUM(o.total) AS spent
+FROM customers c
+JOIN orders o
+  ON o.customer_id = c.id
+WHERE o.status = 'paid'
+GROUP BY c.id, c.name
+ORDER BY spent DESC
+LIMIT 3;</code></pre>
+                      <button class="ai-run-query" type="button" data-ai-run disabled><svg class="icon icon-sm" aria-hidden="true"><use href="#i-play" /></svg><span data-i18n="ai.run">Approve & run</span></button>
+                    </div>
+                  </div>
+                  <div class="ai-run-confirmation"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-check" /></svg><span data-i18n="ai.approved">Query approved. Let's run it.</span></div>
+                  <div class="ai-chat-result"><span class="ai-success-mark"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-check" /></svg></span><p data-ai-summary>Ana, Lucas, and Julia are your top customers. The full result is in the editor.</p></div>
+                </div>
+                <p class="ai-demo-prompt-hint" data-i18n="ai.followup">Choose an example to explore another query.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ai-demo-footer">
+            <ol class="ai-demo-steps" aria-label="Demo progress" data-i18n-attr="aria-label:ai.progress">
+              <li data-ai-step="ask"><span>01</span><span data-i18n="ai.stepAsk">Ask</span></li>
+              <li data-ai-step="review"><span>02</span><span data-ai-step-review data-i18n="ai.stepReview">Review the SQL</span></li>
+              <li class="is-current" data-ai-step="done"><span>03</span><span data-ai-step-done data-i18n="ai.stepDone">See the result</span></li>
+            </ol>
+            <span class="ai-sample-label" data-i18n="ai.sample">Demo · sample data</span>
+          </div>
+          <span class="sr-only" role="status" data-ai-status></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features section-pad" aria-labelledby="features-title">
+      <div class="section-heading features-heading" data-reveal>
+        <span class="features-connector" aria-hidden="true"><svg class="icon icon-sm"><use href="#i-arrow-right" /></svg></span>
+        <h2 id="features-title" data-i18n="features.title">Keep working, right where you are.</h2>
+        <p data-i18n="features.intro">From the next query to your project settings: explore tables, reuse SQL, and make the editor your own.</p>
       </div>
 
       <div class="tabs" role="tablist" aria-label="Woodbox features" data-i18n-attr="aria-label:features.tablist" data-reveal>
-      <button class="tab" role="tab" type="button" id="tab-projects" aria-selected="true" aria-controls="panel-projects" tabindex="0">
-        <svg class="icon" aria-hidden="true"><use href="#i-folder" /></svg>
-        <span data-i18n="features.tab.projects">Projects</span>
-      </button>
-      <button class="tab" role="tab" type="button" id="tab-explore" aria-selected="false" aria-controls="panel-explore" tabindex="-1">
-        <svg class="icon" aria-hidden="true"><use href="#i-table" /></svg>
-        <span data-i18n="features.tab.explore">Data</span>
-      </button>
-      <button class="tab" role="tab" type="button" id="tab-sql" aria-selected="false" aria-controls="panel-sql" tabindex="-1">
-        <svg class="icon" aria-hidden="true"><use href="#i-terminal" /></svg>
-        <span data-i18n="features.tab.sql">SQL</span>
-      </button>
-      <button class="tab" role="tab" type="button" id="tab-schema" aria-selected="false" aria-controls="panel-schema" tabindex="-1">
-        <svg class="icon" aria-hidden="true"><use href="#i-columns" /></svg>
-        <span data-i18n="features.tab.schema">Structure</span>
-      </button>
-      <button class="tab" role="tab" type="button" id="tab-ai" aria-selected="false" aria-controls="panel-ai" tabindex="-1">
-        <svg class="icon" aria-hidden="true"><use href="#i-sparkles" /></svg>
-        <span data-i18n="features.tab.ai">AI</span>
-      </button>
-      <button class="tab" role="tab" type="button" id="tab-search" aria-selected="false" aria-controls="panel-search" tabindex="-1">
-        <svg class="icon" aria-hidden="true"><use href="#i-command" /></svg>
-        <span data-i18n="features.tab.search">Search</span>
-      </button>
-      <button class="tab" role="tab" type="button" id="tab-themes" aria-selected="false" aria-controls="panel-themes" tabindex="-1">
-        <svg class="icon" aria-hidden="true"><use href="#i-palette" /></svg>
-        <span data-i18n="features.tab.themes">Themes</span>
-      </button>
-      <button class="tab" role="tab" type="button" id="tab-snippets" aria-selected="false" aria-controls="panel-snippets" tabindex="-1">
-        <svg class="icon" aria-hidden="true"><use href="#i-braces" /></svg>
-        <span data-i18n="features.tab.snippets">Snippets</span>
-      </button>
+        <button class="tab" role="tab" type="button" id="tab-explore" aria-selected="true" aria-controls="panel-explore" tabindex="0">
+          <svg class="icon" aria-hidden="true"><use href="#i-table" /></svg>
+          <span data-i18n="features.tab.explore">Explore</span>
+        </button>
+        <button class="tab" role="tab" type="button" id="tab-sql" aria-selected="false" aria-controls="panel-sql" tabindex="-1">
+          <svg class="icon" aria-hidden="true"><use href="#i-terminal" /></svg>
+          <span data-i18n="features.tab.sql">Write SQL</span>
+        </button>
+        <button class="tab" role="tab" type="button" id="tab-projects" aria-selected="false" aria-controls="panel-projects" tabindex="-1">
+          <svg class="icon" aria-hidden="true"><use href="#i-folder" /></svg>
+          <span data-i18n="features.tab.projects">Organize</span>
+        </button>
       </div>
 
       <div class="feature-panels" data-reveal>
-      <div class="feature-panel is-active" role="tabpanel" id="panel-projects" aria-labelledby="tab-projects">
-        <div class="screen-shell">
-          <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
-          <a class="screen-link" href="assets/1.welcome.webp" target="_blank" rel="noreferrer">
-            <img src="assets/1.welcome.webp" alt="Woodbox welcome screen and projects" width="1919" height="1031" loading="lazy"
-              decoding="async" data-i18n-attr="alt:features.projects.alt">
-          </a>
-        </div>
-        <div class="feature-detail">
-          <h3 class="feature-title">
-            <svg class="icon" aria-hidden="true"><use href="#i-folder" /></svg>
-            <span data-i18n="features.projects.title">Organized projects</span>
-          </h3>
-          <div class="feature-text">
-            <p data-i18n="features.projects.text">Group connections by client, product, or environment, then pick up right where you left off.</p>
-            <a class="feature-open" href="assets/1.welcome.webp" target="_blank" rel="noreferrer">
-              <span data-i18n="features.expand">Open full image</span>
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+        <div class="feature-panel is-active" role="tabpanel" id="panel-explore" aria-labelledby="tab-explore" tabindex="0">
+          <div class="feature-detail">
+            <div class="feature-text">
+              <h3 class="feature-title" data-i18n="features.explore.title">Look beyond the rows</h3>
+              <p data-i18n="features.explore.text">Browse data, filter results, and inspect columns, indexes, and relationships without leaving the table.</p>
+            </div>
+            <a class="feature-open" href="assets/2.table_data.webp" target="_blank" rel="noreferrer" data-image-viewer data-image-title="features.explore.title" data-image-alt="features.explore.alt" data-image-x="0.589" data-image-y="0.407">
+              <span data-i18n="features.expand">Enlarge image</span>
+              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-expand" /></svg>
+            </a>
+          </div>
+          <div class="screen-shell feature-screen">
+            <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <a class="screen-link feature-viewport" href="assets/2.table_data.webp" target="_blank" rel="noreferrer" data-image-viewer data-image-title="features.explore.title" data-image-alt="features.explore.alt" data-image-x="0.589" data-image-y="0.407" style="--image-width: 1920; --crop-x: 340; --crop-y: 28; --crop-width: 1580; --crop-height: 650; --mobile-x: 340; --mobile-y: 75; --mobile-width: 620; --mobile-height: 465">
+              <img src="assets/2.table_data.webp" alt="Woodbox table data view" width="1920" height="1040" loading="lazy" decoding="async" data-i18n-attr="alt:features.explore.alt">
+              <span class="screen-expand" aria-hidden="true"><svg class="icon"><use href="#i-expand" /></svg></span>
+            </a>
+          </div>
+          <div class="feature-related" aria-label="Related features" data-i18n-attr="aria-label:features.related">
+            <a class="feature-related-link" href="assets/7.table_properties_columns.webp" target="_blank" rel="noreferrer" data-image-viewer data-image-title="features.schema.title" data-image-alt="features.schema.alt" data-image-x="0.490" data-image-y="0.395">
+              <svg class="icon" aria-hidden="true"><use href="#i-columns" /></svg>
+              <span><strong data-i18n="features.schema.title">Understand the structure</strong><span data-i18n="features.schema.teaser">Columns, types, and keys in one place.</span></span>
+              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-expand" /></svg>
+            </a>
+            <a class="feature-related-link" href="assets/4.float_search.webp" target="_blank" rel="noreferrer" data-image-viewer data-image-title="features.search.title" data-image-alt="features.search.alt" data-image-x="0.504" data-image-y="0.409">
+              <svg class="icon" aria-hidden="true"><use href="#i-command" /></svg>
+              <span><strong data-i18n="features.search.title">Find it from the keyboard</strong><span data-i18n="features.search.teaser">Find tables and scripts from the keyboard.</span></span>
+              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-expand" /></svg>
             </a>
           </div>
         </div>
-      </div>
-      <div class="feature-panel" role="tabpanel" id="panel-explore" aria-labelledby="tab-explore">
-        <div class="screen-shell">
-          <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
-          <a class="screen-link" href="assets/2.table_data.webp" target="_blank" rel="noreferrer">
-            <img src="assets/2.table_data.webp" alt="Woodbox table data view" width="1920" height="1040" loading="lazy"
-              decoding="async" data-i18n-attr="alt:features.explore.alt">
-          </a>
-        </div>
-        <div class="feature-detail">
-          <h3 class="feature-title">
-            <svg class="icon" aria-hidden="true"><use href="#i-table" /></svg>
-            <span data-i18n="features.explore.title">Look beyond the rows</span>
-          </h3>
-          <div class="feature-text">
-            <p data-i18n="features.explore.text">Browse data, filter results, and inspect columns, indexes, and relationships without leaving the table.</p>
-            <a class="feature-open" href="assets/2.table_data.webp" target="_blank" rel="noreferrer">
-              <span data-i18n="features.expand">Open full image</span>
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+        <div class="feature-panel" role="tabpanel" id="panel-sql" aria-labelledby="tab-sql" tabindex="0" hidden>
+          <div class="feature-detail">
+            <div class="feature-text">
+              <h3 class="feature-title" data-i18n="features.sql.title">SQL with less repetition</h3>
+              <p data-i18n="features.sql.text">Autocomplete, reusable snippets, and selected-query execution, with queries and results neatly organized in tabs.</p>
+            </div>
+            <a class="feature-open" href="assets/5.query_editor.webp" target="_blank" rel="noreferrer" data-image-viewer data-image-title="features.sql.title" data-image-alt="features.sql.alt" data-image-x="0.589" data-image-y="0.407">
+              <span data-i18n="features.expand">Enlarge image</span>
+              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-expand" /></svg>
+            </a>
+          </div>
+          <div class="screen-shell feature-screen">
+            <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <a class="screen-link feature-viewport" href="assets/5.query_editor.webp" target="_blank" rel="noreferrer" data-image-viewer data-image-title="features.sql.title" data-image-alt="features.sql.alt" data-image-x="0.589" data-image-y="0.407" style="--image-width: 1920; --crop-x: 340; --crop-y: 28; --crop-width: 1580; --crop-height: 650; --mobile-x: 395; --mobile-y: 65; --mobile-width: 740; --mobile-height: 555">
+              <img data-src="assets/5.query_editor.webp" alt="Woodbox SQL query editor" width="1920" height="1040" loading="lazy" decoding="async" data-i18n-attr="alt:features.sql.alt">
+              <span class="screen-expand" aria-hidden="true"><svg class="icon"><use href="#i-expand" /></svg></span>
+            </a>
+          </div>
+          <div class="feature-related" aria-label="Related features" data-i18n-attr="aria-label:features.related">
+            <a class="feature-related-link" href="assets/10.add_snippet_query_editor.webp" target="_blank" rel="noreferrer" data-image-viewer data-image-title="features.snippets.title" data-image-alt="features.snippets.alt" data-image-x="0.500" data-image-y="0.496">
+              <svg class="icon" aria-hidden="true"><use href="#i-braces" /></svg>
+              <span><strong data-i18n="features.snippets.title">Keep the SQL you reuse</strong><span data-i18n="features.snippets.teaser">Reuse the queries you reach for every day.</span></span>
+              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-expand" /></svg>
+            </a>
+            <a class="feature-related-link" href="assets/3.tabs_splited.webp" target="_blank" rel="noreferrer" data-image-viewer data-image-title="features.split.title" data-image-alt="features.split.alt" data-image-x="0.589" data-image-y="0.407">
+              <svg class="icon" aria-hidden="true"><use href="#i-columns" /></svg>
+              <span><strong data-i18n="features.split.title">Queries side by side</strong><span data-i18n="features.split.teaser">Compare your work across two editors.</span></span>
+              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-expand" /></svg>
             </a>
           </div>
         </div>
-      </div>
-      <div class="feature-panel" role="tabpanel" id="panel-sql" aria-labelledby="tab-sql">
-        <div class="screen-shell">
-          <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
-          <a class="screen-link" href="assets/5.query_editor.webp" target="_blank" rel="noreferrer">
-            <img src="assets/5.query_editor.webp" alt="Woodbox SQL query editor" width="1920" height="1040" loading="lazy"
-              decoding="async" data-i18n-attr="alt:features.sql.alt">
-          </a>
-        </div>
-        <div class="feature-detail">
-          <h3 class="feature-title">
-            <svg class="icon" aria-hidden="true"><use href="#i-terminal" /></svg>
-            <span data-i18n="features.sql.title">SQL with less repetition</span>
-          </h3>
-          <div class="feature-text">
-            <p data-i18n="features.sql.text">Autocomplete, reusable snippets, and selected-query execution, with queries and results neatly organized in tabs.</p>
-            <a class="feature-open" href="assets/5.query_editor.webp" target="_blank" rel="noreferrer">
-              <span data-i18n="features.expand">Open full image</span>
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+        <div class="feature-panel" role="tabpanel" id="panel-projects" aria-labelledby="tab-projects" tabindex="0" hidden>
+          <div class="feature-detail">
+            <div class="feature-text">
+              <h3 class="feature-title" data-i18n="features.projects.title">Organized projects</h3>
+              <p data-i18n="features.projects.text">Group connections by client, product, or environment, then pick up right where you left off.</p>
+            </div>
+            <a class="feature-open" href="assets/1.welcome.webp" target="_blank" rel="noreferrer" data-image-viewer data-image-title="features.projects.title" data-image-alt="features.projects.alt" data-image-x="0.255" data-image-y="0.262">
+              <span data-i18n="features.expand">Enlarge image</span>
+              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-expand" /></svg>
+            </a>
+          </div>
+          <div class="screen-shell feature-screen">
+            <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <a class="screen-link feature-viewport" href="assets/1.welcome.webp" target="_blank" rel="noreferrer" data-image-viewer data-image-title="features.projects.title" data-image-alt="features.projects.alt" data-image-x="0.255" data-image-y="0.262" style="--image-width: 1919; --crop-x: 0; --crop-y: 25; --crop-width: 980; --crop-height: 403; --mobile-x: 35; --mobile-y: 65; --mobile-width: 400; --mobile-height: 300">
+              <img data-src="assets/1.welcome.webp" alt="Woodbox welcome screen and projects" width="1919" height="1031" loading="lazy" decoding="async" data-i18n-attr="alt:features.projects.alt">
+              <span class="screen-expand" aria-hidden="true"><svg class="icon"><use href="#i-expand" /></svg></span>
+            </a>
+          </div>
+          <div class="feature-related" aria-label="Related features" data-i18n-attr="aria-label:features.related">
+            <a class="feature-related-link" href="assets/8.themes.webp" target="_blank" rel="noreferrer" data-image-viewer data-image-title="features.themes.title" data-image-alt="features.themes.alt" data-image-x="0.500" data-image-y="0.501">
+              <svg class="icon" aria-hidden="true"><use href="#i-palette" /></svg>
+              <span><strong data-i18n="features.themes.title">Make it look yours</strong><span data-i18n="features.themes.teaser">Choose a theme and adjust the editor colors.</span></span>
+              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-expand" /></svg>
             </a>
           </div>
         </div>
-      </div>
-      <div class="feature-panel" role="tabpanel" id="panel-schema" aria-labelledby="tab-schema">
-        <div class="screen-shell">
-          <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
-          <a class="screen-link" href="assets/7.table_properties_columns.webp" target="_blank" rel="noreferrer">
-            <img src="assets/7.table_properties_columns.webp" alt="Woodbox table columns and properties" width="1918" height="1039" loading="lazy"
-              decoding="async" data-i18n-attr="alt:features.schema.alt">
-          </a>
-        </div>
-        <div class="feature-detail">
-          <h3 class="feature-title">
-            <svg class="icon" aria-hidden="true"><use href="#i-columns" /></svg>
-            <span data-i18n="features.schema.title">Understand the structure</span>
-          </h3>
-          <div class="feature-text">
-            <p data-i18n="features.schema.text">Check types, columns, and keys before you write a query. Table details are always one click from your data.</p>
-            <a class="feature-open" href="assets/7.table_properties_columns.webp" target="_blank" rel="noreferrer">
-              <span data-i18n="features.expand">Open full image</span>
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="feature-panel" role="tabpanel" id="panel-ai" aria-labelledby="tab-ai">
-        <div class="screen-shell">
-          <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
-          <a class="screen-link" href="assets/6.query_editor_with_ai_panel.webp" target="_blank" rel="noreferrer">
-            <img src="assets/6.query_editor_with_ai_panel.webp" alt="Woodbox AI query panel" width="1913" height="1040" loading="lazy"
-              decoding="async" data-i18n-attr="alt:features.ai.alt">
-          </a>
-        </div>
-        <div class="feature-detail">
-          <h3 class="feature-title">
-            <svg class="icon" aria-hidden="true"><use href="#i-sparkles" /></svg>
-            <span data-i18n="features.ai.title">A hand beside the editor</span>
-          </h3>
-          <div class="feature-text">
-            <p data-i18n="features.ai.text">Generate, explain, and refine queries with the AI provider you choose. Prefer to write by hand? The editor works just as well without it.</p>
-            <a class="feature-open" href="assets/6.query_editor_with_ai_panel.webp" target="_blank" rel="noreferrer">
-              <span data-i18n="features.expand">Open full image</span>
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="feature-panel" role="tabpanel" id="panel-search" aria-labelledby="tab-search">
-        <div class="screen-shell">
-          <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
-          <a class="screen-link" href="assets/4.float_search.webp" target="_blank" rel="noreferrer">
-            <img src="assets/4.float_search.webp" alt="Woodbox quick search" width="1913" height="1038" loading="lazy"
-              decoding="async" data-i18n-attr="alt:features.search.alt">
-          </a>
-        </div>
-        <div class="feature-detail">
-          <h3 class="feature-title">
-            <svg class="icon" aria-hidden="true"><use href="#i-command" /></svg>
-            <span data-i18n="features.search.title">Find it from the keyboard</span>
-          </h3>
-          <div class="feature-text">
-            <p data-i18n="features.search.text">Press Ctrl/Cmd + K to find tables, functions, and scripts without losing your train of thought.</p>
-            <span class="kbd-row" aria-hidden="true"><kbd>Ctrl</kbd><kbd>K</kbd></span>
-            <a class="feature-open" href="assets/4.float_search.webp" target="_blank" rel="noreferrer">
-              <span data-i18n="features.expand">Open full image</span>
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="feature-panel" role="tabpanel" id="panel-themes" aria-labelledby="tab-themes">
-        <div class="screen-shell">
-          <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
-          <a class="screen-link" href="assets/8.themes.webp" target="_blank" rel="noreferrer">
-            <img src="assets/8.themes.webp" alt="Woodbox theme settings" width="1920" height="1008" loading="lazy"
-              decoding="async" data-i18n-attr="alt:features.themes.alt">
-          </a>
-        </div>
-        <div class="feature-detail">
-          <h3 class="feature-title">
-            <svg class="icon" aria-hidden="true"><use href="#i-palette" /></svg>
-            <span data-i18n="features.themes.title">Make it look yours</span>
-          </h3>
-          <div class="feature-text">
-            <p data-i18n="features.themes.text">Pick a theme, from GitHub to Catppuccin, and adjust the colors of the editor, tables, and buttons.</p>
-            <a class="feature-open" href="assets/8.themes.webp" target="_blank" rel="noreferrer">
-              <span data-i18n="features.expand">Open full image</span>
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="feature-panel" role="tabpanel" id="panel-snippets" aria-labelledby="tab-snippets">
-        <div class="screen-shell">
-          <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
-          <a class="screen-link" href="assets/10.add_snippet_query_editor.webp" target="_blank" rel="noreferrer">
-            <img src="assets/10.add_snippet_query_editor.webp" alt="Woodbox snippet editor" width="1920" height="1008" loading="lazy"
-              decoding="async" data-i18n-attr="alt:features.snippets.alt">
-          </a>
-        </div>
-        <div class="feature-detail">
-          <h3 class="feature-title">
-            <svg class="icon" aria-hidden="true"><use href="#i-braces" /></svg>
-            <span data-i18n="features.snippets.title">Keep the SQL you reuse</span>
-          </h3>
-          <div class="feature-text">
-            <p data-i18n="features.snippets.text">Save snippets with a name, a prefix, and a dialect, then export them whenever you need.</p>
-            <a class="feature-open" href="assets/10.add_snippet_query_editor.webp" target="_blank" rel="noreferrer">
-              <span data-i18n="features.expand">Open full image</span>
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
-            </a>
-          </div>
-        </div>
-      </div>
       </div>
     </section>
 
@@ -381,7 +427,7 @@
       <div class="positioning-grid">
         <div data-reveal>
           <h2 data-i18n="positioning.title">Runs on your machine, on your terms</h2>
-          <p data-i18n="positioning.text">Everything you set up stays on your computer, and nothing requires an account.</p>
+          <p data-i18n="positioning.text">Organize your work on your computer, without needing a Woodbox account.</p>
         </div>
         <ul class="position-list">
           <li data-reveal>
@@ -435,37 +481,58 @@
       </ol>
     </section>
 
-    <section id="download" class="cta section-pad">
+    <section id="download" class="cta section-pad" aria-labelledby="download-title">
       <div class="cta-copy" data-reveal>
-        <h2 data-i18n="cta.title">Try Woodbox on your computer</h2>
-        <p data-i18n="cta.text">Download the installer for Windows, macOS, or Linux straight from GitHub releases. Open source, with no sign-up.
-        </p>
-      </div>
-      <div class="cta-action" data-reveal>
-        <div class="cta-actions">
-          <a class="button button-primary" data-download href="https://github.com/antonycms/woodbox/releases/latest"
-            target="_blank" rel="noreferrer">
-            <svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>
-            <span data-i18n="cta.release">Download Woodbox</span>
-          </a>
-          <a class="button button-secondary" href="https://github.com/antonycms/woodbox" target="_blank" rel="noreferrer">
-            <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
-            <span data-i18n="cta.repo">Contribute on GitHub</span>
-          </a>
-        </div>
+        <h2 id="download-title" data-i18n="cta.title">Get started with Woodbox.</h2>
+        <p data-i18n="cta.text">Install the app, connect your database, and start exploring.</p>
         <ul class="cta-checks">
           <li><svg class="icon icon-sm" aria-hidden="true"><use href="#i-check" /></svg><span data-i18n="cta.check1">No sign-up</span></li>
           <li><svg class="icon icon-sm" aria-hidden="true"><use href="#i-check" /></svg><span data-i18n="cta.check2">MIT license</span></li>
           <li><svg class="icon icon-sm" aria-hidden="true"><use href="#i-check" /></svg><span data-i18n="cta.check3">Local-first</span></li>
         </ul>
       </div>
+      <div class="download-picker" data-download-picker hidden>
+        <fieldset class="download-platforms">
+          <legend data-i18n="download.chooseOs">Your operating system</legend>
+          <div class="download-platform-options">
+            <label><input type="radio" name="download-os" value="windows"><span>Windows</span></label>
+            <label><input type="radio" name="download-os" value="mac"><span>macOS</span></label>
+            <label><input type="radio" name="download-os" value="linux"><span>Linux</span></label>
+          </div>
+        </fieldset>
+        <p class="download-guidance" data-download-guidance data-i18n="download.chooseHint">Woodbox runs on your computer. Choose a system to see its installer.</p>
+        <div class="download-architecture" data-architecture-wrap hidden>
+          <label for="download-architecture" data-i18n="download.architecture">Processor</label>
+          <select id="download-architecture" data-download-architecture></select>
+        </div>
+        <div class="download-file">
+          <a class="button button-primary" data-installer-link href="https://github.com/antonycms/woodbox/releases/latest" target="_blank" rel="noreferrer">
+            <svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>
+            <span data-installer-label data-i18n="download.allReleases">View installers on GitHub</span>
+          </a>
+          <div class="download-meta">
+            <div class="download-release" role="status" data-release-status></div>
+            <p class="download-file-meta" aria-live="polite" data-installer-meta></p>
+          </div>
+        </div>
+        <p class="download-mac-note" data-mac-note hidden><span data-i18n="download.macNote">On macOS, Apple may block the first launch because this build is not yet notarized.</span> <a href="https://github.com/antonycms/woodbox#macos-first-launch-warning" target="_blank" rel="noreferrer" data-i18n="download.macHelp">See the first-launch instructions</a></p>
+        <details class="download-install" data-install-guide hidden>
+          <summary data-install-title></summary>
+          <ol data-install-steps></ol>
+        </details>
+        <div class="download-links">
+          <a href="https://github.com/antonycms/woodbox/releases/latest" target="_blank" rel="noreferrer" data-i18n="download.releaseNotes">Release notes</a>
+          <a href="https://github.com/antonycms/woodbox/releases" target="_blank" rel="noreferrer" data-i18n="download.allVersions">All versions</a>
+        </div>
+      </div>
+      <noscript><a class="button button-primary" href="https://github.com/antonycms/woodbox/releases/latest" data-i18n="download.allReleases">View installers on GitHub</a></noscript>
     </section>
   </main>
 
   <footer class="footer">
     <div class="footer-main">
       <div class="footer-brand">
-        <a class="brand" href="#top" aria-label="Woodbox home">
+        <a class="brand" href="#top" aria-label="Woodbox home" data-i18n-attr="aria-label:nav.home">
           <span class="brand-mark" aria-hidden="true">
             <img src="assets/icon.webp" alt="">
           </span>
@@ -474,13 +541,14 @@
         <p data-i18n="footer.text">Made for people who work with data every day.</p>
       </div>
 
-      <nav class="footer-col" aria-label="Product">
+      <nav class="footer-col" aria-label="Product" data-i18n-attr="aria-label:footer.product">
         <p class="footer-title" data-i18n="footer.product">Product</p>
+        <a href="#ai" data-i18n="nav.ai">AI</a>
         <a href="#features" data-i18n="nav.features">Features</a>
         <a href="#download" data-i18n="nav.download">Download</a>
       </nav>
 
-      <nav class="footer-col" aria-label="Project">
+      <nav class="footer-col" aria-label="Project" data-i18n-attr="aria-label:footer.project">
         <p class="footer-title" data-i18n="footer.project">Project</p>
         <a href="https://github.com/antonycms/woodbox" target="_blank" rel="noreferrer" data-i18n="nav.github">GitHub</a>
         <a href="https://github.com/antonycms/woodbox/releases" target="_blank" rel="noreferrer" data-i18n="footer.releases">Releases</a>
@@ -493,6 +561,24 @@
       <span data-i18n="footer.license">Open source under the MIT license</span>
     </div>
   </footer>
+
+  <dialog class="image-viewer" data-viewer aria-labelledby="image-viewer-title">
+    <div class="image-viewer-toolbar">
+      <h2 id="image-viewer-title" data-viewer-title></h2>
+      <div class="image-viewer-actions">
+        <button type="button" data-viewer-zoom aria-pressed="false" data-i18n="viewer.zoom">Enlarge</button>
+        <button class="image-viewer-close" type="button" data-viewer-close aria-label="Close image" data-i18n-attr="aria-label:viewer.close" autofocus><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg></button>
+      </div>
+    </div>
+    <div class="image-viewer-stage" data-viewer-stage tabindex="0" aria-label="Image preview" data-i18n-attr="aria-label:viewer.stage">
+      <img data-viewer-image alt="">
+      <p class="image-viewer-message" data-viewer-message role="status"></p>
+    </div>
+    <div class="image-viewer-footer">
+      <span data-viewer-hint data-i18n="viewer.hint">Enlarge to inspect the details.</span>
+      <a data-viewer-original target="_blank" rel="noreferrer" data-i18n="viewer.original">Open original</a>
+    </div>
+  </dialog>
 
   <script type="module" src="js/main.js"></script>
 </body>
