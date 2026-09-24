@@ -7,12 +7,23 @@
   <meta name="description" content="A lightweight, open-source desktop app for PostgreSQL, MySQL, and SQLite. Explore tables, write SQL, and keep every connection in one local workspace."
     data-i18n-attr="content:meta.description">
   <meta name="theme-color" content="#111211">
+  <link rel="canonical" href="https://woodbox.dev/">
   <meta property="og:title" content="Woodbox · Open-source database manager" data-i18n-attr="content:meta.title">
+  <meta property="og:site_name" content="Woodbox">
   <meta property="og:description" content="A lightweight, open-source desktop app for PostgreSQL, MySQL, and SQLite. Explore tables, write SQL, and keep every connection in one local workspace."
     data-i18n-attr="content:meta.description">
   <meta property="og:image" content="assets/2.table_data.webp">
   <title>Woodbox · Open-source database manager</title>
-  <link rel="icon" href="assets/icon.webp" type="image/png">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Woodbox",
+      "alternateName": "Woodbox.dev",
+      "url": "https://woodbox.dev/"
+    }
+  </script>
+  <link rel="icon" href="assets/icon-64.webp" type="image/png">
   <link rel="stylesheet" href="style.css">
   <link rel="modulepreload" href="js/main.js">
   <link rel="modulepreload" href="js/config.js">
@@ -63,7 +74,7 @@
     <nav class="nav" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="Woodbox home">
         <span class="brand-mark" aria-hidden="true">
-          <img src="assets/icon.webp" alt="">
+          <img src="assets/icon-64.webp" srcset="assets/icon-32.webp 32w, assets/icon-64.webp 64w, assets/icon-96.webp 96w, assets/icon-128.webp 128w" sizes="30px" alt="">
         </span>
         <span>Woodbox</span>
       </a>
@@ -127,7 +138,9 @@
       <div class="hero-visual">
         <div class="screen-shell">
           <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
-          <img src="assets/2.table_data.webp" alt="Woodbox table data view" width="1920" height="1040"
+          <img src="assets/2.table_data-1200.webp"
+            srcset="assets/2.table_data-800.webp 800w, assets/2.table_data-1200.webp 1200w"
+            sizes="(max-width: 760px) 100vw, 1028px" alt="Woodbox table data view" width="1920" height="1040"
             fetchpriority="high" data-i18n-attr="alt:hero.imageAlt">
         </div>
       </div>
@@ -201,7 +214,9 @@
         <div class="screen-shell">
           <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
           <a class="screen-link" href="assets/1.welcome.webp" target="_blank" rel="noreferrer">
-            <img src="assets/1.welcome.webp" alt="Woodbox welcome screen and projects" width="1919" height="1031" loading="lazy"
+            <img src="assets/1.welcome-1200.webp"
+              srcset="assets/1.welcome-800.webp 800w, assets/1.welcome-1200.webp 1200w"
+              sizes="(max-width: 760px) 100vw, 1168px" alt="Woodbox welcome screen and projects" width="1919" height="1031" loading="lazy"
               decoding="async" data-i18n-attr="alt:features.projects.alt">
           </a>
         </div>
@@ -223,7 +238,9 @@
         <div class="screen-shell">
           <div class="screen-topbar" aria-hidden="true"><i></i><i></i><i></i></div>
           <a class="screen-link" href="assets/2.table_data.webp" target="_blank" rel="noreferrer">
-            <img src="assets/2.table_data.webp" alt="Woodbox table data view" width="1920" height="1040" loading="lazy"
+            <img src="assets/2.table_data-1200.webp"
+              srcset="assets/2.table_data-800.webp 800w, assets/2.table_data-1200.webp 1200w"
+              sizes="(max-width: 760px) 100vw, 1168px" alt="Woodbox table data view" width="1920" height="1040" loading="lazy"
               decoding="async" data-i18n-attr="alt:features.explore.alt">
           </a>
         </div>
@@ -467,7 +484,7 @@
       <div class="footer-brand">
         <a class="brand" href="#top" aria-label="Woodbox home">
           <span class="brand-mark" aria-hidden="true">
-            <img src="assets/icon.webp" alt="">
+            <img src="assets/icon-64.webp" srcset="assets/icon-32.webp 32w, assets/icon-64.webp 64w, assets/icon-96.webp 96w, assets/icon-128.webp 128w" sizes="30px" alt="">
           </span>
           <span>Woodbox</span>
         </a>
